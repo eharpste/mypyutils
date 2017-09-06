@@ -31,14 +31,14 @@ class Row:
     def str_header(self):
         return self.delim.join(self.header)
 
-def csv_header(f_name,delimiter='\t'):
-     with open(f_name,'r') as f:
+def csv_header(f_name,delimiter='\t',encoding=None):
+     with open(f_name,mode='r',encoding=encoding) as f:
         c = csv.reader(f,delimiter = delimiter)
         for row in c:
             return row
 
-def csv_stream(f_name,delimiter='\t'):
-    with open(f_name,'r') as f:
+def csv_stream(f_name,delimiter='\t',encoding=None):
+    with open(f_name,mode='r',encoding=encoding) as f:
         c = csv.reader(f,delimiter = delimiter)
         h = None
         for row in c:

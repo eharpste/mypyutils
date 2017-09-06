@@ -9,5 +9,6 @@ setup(
     author='Erik Harpstead',
     author_email='eharpste@cs.cmu.edu',
     description='This is a collection of utilities scripts I have written for myself over the years',
-    license='MIT'    
+    license='LICENSE.txt',
+    url='https://github.com/eharpste/mypyutils'
 )
