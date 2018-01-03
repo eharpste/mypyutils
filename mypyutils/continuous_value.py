@@ -8,7 +8,16 @@ class ExtendedCV(ContinuousValue):
         self.max = -math.inf
         self.bin_size = bin_size
         self.bins={}
+        self.total = 0
         super(ExtendedCV, self).__init__()
+
+    def range(self):
+        return self.max - self.min
+
+    def standard_error(self):
+        if self.num == 0:
+            return float('nan')
+        return self.biased_std() / math.sqrt(self.num)
 
     def update(self,x):
         if math.isnan(x):
@@ -17,6 +26,7 @@ class ExtendedCV(ContinuousValue):
             self.min = x
         if x > self.max:
             self.max = x
+        self.total += x
         if self.bin_size is not None:
             xv = round(x / self.bin_size) * self.bin_size
             if xv not in self.bins:
@@ -29,8 +39,12 @@ class ExtendedCV(ContinuousValue):
             self.min = other.min
         if other.max > self.max:
             self.max = other.max
+        self.total += other.total
         if self.bin_size == other.bin_size:
-            self.bins.update(other.bins)
+            for k in other.bins:
+                if k not in self.bins:
+                    self.bins[k] = 0
+                self.bins[k] += other.bins[k]
         else:
             raise ValueError("Can't combine two ExtendedCVs with different bin_sizes.")
         super(ExtendedCV, self).combine(other)
