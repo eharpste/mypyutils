@@ -33,13 +33,13 @@ class Row:
 
 def csv_header(f_name,delimiter='\t',encoding=None):
      with open(f_name,mode='r',encoding=encoding) as f:
-        c = csv.reader(f,delimiter = delimiter)
+        c = csv.reader(f, delimiter = delimiter)
         for row in c:
             return row
 
 def csv_stream(f_name,delimiter='\t',encoding=None):
     with open(f_name,mode='r',encoding=encoding) as f:
-        c = csv.reader(f,delimiter = delimiter)
+        c = csv.reader(f, delimiter = delimiter)
         h = None
         for row in c:
             if h is None:
