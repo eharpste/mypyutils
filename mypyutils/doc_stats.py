@@ -2,6 +2,7 @@ from nltk.tokenize import RegexpTokenizer
 from nltk.corpus import stopwords
 from nltk.util import ngrams
 
+
 def frequencies(text, ngs=False, filter_stops=True):
     """
     Returns a token frequency dictionary given a large string.
@@ -29,4 +30,3 @@ def frequencies(text, ngs=False, filter_stops=True):
             count_set[tok] = 0
         count_set[tok] += 1
     return count_set
-    
