@@ -138,6 +138,10 @@ class Frequencies:
         else:
             self.dec(item)
 
+    def batch_update(self, collection, inc=True):
+        for c in collection:
+            self.update(c, inc)
+
     def output_json(self, percent=False):
         if percent:
             return self.percentages()
